@@ -23782,26 +23782,22 @@ boost/winapi/basic_types.hpp
 boost/winapi/basic_types.hpp
 -
 
-/home/luciferthefirstt/LuciferTheFirstt/workspace/workspace/projects/AL/lab11/lab11/main.cpp
-async++.h
--
-boost/process.hpp
--
-boost/process/extend.hpp
+/home/luciferthefirstt/LuciferTheFirstt/workspace/workspace/projects/AL/lab11/lab-11-process/prob.cpp
+iostream
 -
 boost/program_options.hpp
 -
-vector
+async++.h
+/home/luciferthefirstt/LuciferTheFirstt/workspace/workspace/projects/AL/lab11/lab-11-process/async++.h
+boost/process.hpp
 -
-iostream
+boost/filesystem.hpp
 -
-signal.h
--
-string
+chrono
 -
 thread
 -
-chrono
+atomic
 -
 
 process/include/boost/process.hpp
@@ -25232,24 +25228,6 @@ system_error
 
 process/include/boost/process/exe.hpp
 boost/process/detail/basic_cmd.hpp
--
-
-process/include/boost/process/extend.hpp
-boost/process/detail/handler.hpp
--
-boost/process/detail/used_handles.hpp
--
-boost/process/detail/windows/executor.hpp
--
-boost/process/detail/windows/async_handler.hpp
--
-boost/process/detail/windows/asio_fwd.hpp
--
-boost/process/detail/posix/executor.hpp
--
-boost/process/detail/posix/async_handler.hpp
--
-boost/process/detail/posix/asio_fwd.hpp
 -
 
 process/include/boost/process/group.hpp

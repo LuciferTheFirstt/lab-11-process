@@ -1,164 +1,169 @@
-#include <boost/program_options.hpp>
-#include <iostream>
-#include <string>
-#include <process.hpp>
 #include <async++.h>
+#include <boost/process.hpp>
+#include <boost/process/extend.hpp>
+#include <boost/program_options.hpp>
+#include <vector>
+#include <iostream>
+#include <signal.h>
+#include <string>
+#include <thread>
 #include <chrono>
-namespace
-{
-	const size_t ERROR_IN_COMMAND_LINE = 1;
-	const size_t SUCCESS = 0;
-	const size_t ERROR_UNHANDLED_EXCEPTION = 2;
 
+using namespace boost::asio;
+using namespace boost::process;
+using namespace boost::process::extend;
+using namespace boost::program_options;
+
+void build(int argc, char* argv[]);
+
+void create_child(const std::string& command, const time_t& period);
+
+void create_child(const std::string& command, const time_t& period, int& res);
+
+void check_time(child& process, const time_t& period);
+
+time_t time_now();
+
+
+void build(int argc, char* argv[]) {
+
+    options_description desc("Allowed options");
+    desc.add_options()
+        ("help", "выводим вспомогательное сообщение")
+        ("config", value<std::string>(), "указываем конфигурацию сборки (по умолчанию Debug)")
+        ("install", "добавляем этап установки (в директорию _install)")
+        ("pack", "добавляем этап упаковки (в архив формата tar.gz)")
+        ("timeout", value<time_t>(), "указываем время ожидания (в секундах)")
+    ;
+
+    variables_map vm;
+    store(parse_command_line(argc, argv, desc), vm);
+    notify(vm);
+
+    if (vm.count("help") && !vm.count("config")  && !vm.count("pack")
+                         && !vm.count("timeout") && !vm.count("install")) {
+        std::cout << desc << "\n";
+    }
+    else {
+        std::string config = "Debug";
+        time_t timeout =  time_now();
+        time_t time_spent = 0;
+        if (vm.count("timeout")) {
+            timeout = vm["timeout"].as<time_t>();
+        }
+
+        if (vm.count("config")) {
+            config = vm["config"].as<std::string>();
+        }
+
+        std::string command_1 = "cmake -H. -B_build -DCMAKE_INSTALL_" +
+                             std::string("PREFIX=_install -DCMAKE_BUILD_TYPE=");
+        std::string command_2 = "cmake --build _build";
+        std::string command_3 = "cmake --build _build --target install";
+        std::string command_4 = "cmake --build _build --target package";
+
+        if (config == "Debug" || config == "Release") {
+            int res_1 = 0;
+            int res_2 = 0;
+            command_1 += config;
+
+            auto t1 = async::spawn([&res_1, config, timeout, &time_spent,
+                                    command_1, command_2] () mutable {
+                time_t start_1 = time_now();
+
+                create_child(command_1, timeout);
+                time_t end_1 = time_now();
+
+                time_spent += end_1 - start_1;
+
+                time_t period_2 = timeout - time_spent;
+                create_child(command_2, period_2, res_1);
+                time_t end_2 = time_now();
+
+                time_spent += end_2 - end_1;
+            });
+
+            if (vm.count("install") && res_1 == 0) {
+                auto t2 = t1.then([&res_2, command_3,
+                                            timeout, &time_spent] () mutable {
+
+                    time_t period_3 = timeout - time_spent;
+                    time_t start_3 = time_now();
+
+                    create_child(command_3, period_3, res_2);
+                    time_t end_3 = time_now();
+
+                    time_spent += end_3 - start_3;
+                });
+
+                if (vm.count("pack") && res_2 == 0) {
+                    auto t3 = t2.then([command_4, timeout, time_spent] () {
+                        time_t period_4 = timeout - time_spent;
+
+                        create_child(command_4, period_4);
+                    });
+                }
+            }
+        }
+        else {
+            std::cerr << "config = " << config << " doesn't exist!\n";
+        }
+    }
 }
 
-size_t timeout = 0;
-std::string config;
+void create_child(const std::string& command, const time_t& period) {
+    std::string line;
+    ipstream out;
 
-void on_timeout(int timeout_)
-{
-	timeout = timeout_;
+    child process(command, std_out > out);
+
+    std::thread checkTime(check_time, std::ref(process), std::ref(period));
+
+    while (out && std::getline(out, line) && !line.empty())
+        std::cerr << line << std::endl;
+
+    checkTime.join();
 }
 
 
-void on_config(std::string config_)
-{
-	config = config_;
+void create_child(const std::string& command, const time_t& period, int& res) {
+    std::string line;
+    ipstream out;
+
+    child process(command, std_out > out);
+
+    std::thread checkTime(check_time, std::ref(process), std::ref(period));
+
+    while (out && std::getline(out, line) && !line.empty())
+        std::cerr << line << std::endl;
+
+    checkTime.join();
+
+    res = process.exit_code();
 }
-int main(int argc, char** argv)
-{
-	try
-	{
-		namespace bp = boost::process;
-		namespace po = boost::program_options;
-		po::options_description desc("Options");
-		desc.add_options()
-			("help", " выводим вспомогательное сообщение")
-			("config <Release|Debug>", po::value<std::string>()->notifier(on_config), "  указываем конфигурацию сборки (по умолчанию Debug)")
-			("install", "  добавляем этап установки (в директорию _install)")
-			("pack", " добавляем этап упаковки (в архив формата tar.gz)")
-			("timeout <count>", po::value<int>()->notifier(on_timeout), " указываем время ожидания (в секундах)");
-		po::variables_map vm;
-		try
-		{
-			namespace bp = boost::process;
-			namespace po = boost::program_options;
-			po::options_description desc("Options");
-			desc.add_options()
-				("help", " выводим вспомогательное сообщение")
-				("config <Release|Debug>", po::value<std::string>()->notifier(on_config), "  указываем конфигурацию сборки (по умолчанию Debug)")
-				("install", "  добавляем этап установки (в директорию _install)")
-				("pack", " добавляем этап упаковки (в архив формата tar.gz)")
-				("timeout <count>", po::value<int>()->notifier(on_timeout), " указываем время ожидания (в секундах)");
-			po::variables_map vm;
-			try
-			{
-				po::store(po::parse_command_line(argc, argv, desc), vm);
-				if (vm.count("help"))
-				{
-					std::cout << "sdfsdfs" << std::endl << desc << std::endl;
-					return SUCCESS;
-				}
-				po::notify(vm);
 
+void check_time(child& process, const time_t& period) {
+    time_t start = time_now();
 
-				if (config == "")
-					config = "Debug";
+    while (true) {
+        if ((time_now() - start > period) && process.running()) {
+            std::error_code ec;
+            process.terminate(ec);
+            std::cout << ec;
+            break;
+        }
+        else if (!process.running()) {
+            break;
+        }
+    }
+}
 
-				std::string cmake_args_1 = "-H. -B_builds -DCMAKE_INSTALL_PREFIX=_install -DCMAKE_BUILD_TYPE=";
-				cmake_args_1 += config;
+time_t time_now() {
+    return std::chrono::system_clock::to_time_t(
+            std::chrono::system_clock::now()
+            );
+}
 
-				std::string cmake_args_2 = "--build _builds";
-
-				bp::group g;
-
-				int count = 0;
-
-				auto task1 = async::spawn([&cmake_args_1, &g, &count] {
-					bp::child c1("./cmake1", cmake_args_1, g);
-					count++;
-					c1.wait();
-					count--;
-					return c1.exit_code();                                                                                                                                                                                       });                                                                                                                                                                                                                                                                                                                                                                                                                         async::cancellation_token c;
-				auto task_watchdog = async::spawn([&g, &count, &c] {
-					if (timeout == 0) return;
-					while (timeout > 0)
-					{
-						sleep(1);
-						timeout--;
-						async::interruption_point(c);
-					}
-					std::cout << "Reached timeout. Running " << count << " processes. Terminating";
-					if (count > 0)
-						g.terminate();
-
-					});
-				int result = task1.get();
-
-				std::cout << "Ran command 1 with result code: " << result << std::endl;
-				return result;
-			}
-			auto task2 = async::spawn([&cmake_args_2, &g, &count] {
-				bp::child c2("./cmake1", cmake_args_2, g);
-				count++;
-				c2.wait();
-				count--;
-				return c2.exit_code();
-				});
-			result = task2.get();
-			std::cout << "Ran command 2 with result code: " << result << std::endl;
-
-			if (vm.count("install"))
-			{
-				if (result != 0)
-				{
-					std::cout << "Command 2 returned value: " << result << "\n Exiting.";
-					return result;
-				}
-				std::string cmake_args_3 = "--build _builds --target install";
-				auto task3 = async::spawn([&cmake_args_3, &g, &count] {                                                                                                                                                                       bp::child c3("./cmake1", cmake_args_3, g);
-				count++;
-				c3.wait();
-				count--;                                                                                                                                                                                                           return c3.exit_code();                                                                                                                                                                                     });
-				result = task3.get();
-				std::cout << "Ran command 3 with result code: " << result << std::endl;
-
-			}
-
-			if (vm.count("pack"))
-			{
-				if (result != 0)
-				{
-					std::cout << "Previous command returned value: " << result << "\n Exiting.";
-					return result;
-				}
-				std::string cmake_args_4 = "--build _builds --target package";
-				auto task4 = async::spawn([&cmake_args_4, &g, &count] {
-					bp::child c4("./cmake1", cmake_args_4, g);
-					count++;
-					c4.wait();
-					count--;
-					return c4.exit_code();
-					});
-				result = task4.get();
-				std::cout << "Ran command with result code: " << result << std::endl;
-
-			}
-			// g.wait();
-			c.cancel();
-		}
-		catch (po::error & e)
-		{
-			std::cerr << "ERROR: " << e.what() << std::endl << std::endl;
-			std::cerr << desc << std::endl;
-			return ERROR_IN_COMMAND_LINE;
-		}
-		}
-		catch (std::exception & e)
-		{
-			std::cerr << "Unhandled Exception reached the top of main: "
-				<< e.what() << ", application will now exit" << std::endl;
-			return ERROR_UNHANDLED_EXCEPTION;
-		}
-		return 0;
+int main(int argc, char* argv[]) {
+    build(argc, argv);
 }

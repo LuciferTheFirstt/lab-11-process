@@ -6,5 +6,5 @@ CXX_FLAGS =   -pthread -std=gnu++1z
 
 CXX_DEFINES = -DLIBASYNC_STATIC
 
-CXX_INCLUDES = -I/home/luciferthefirstt/LuciferTheFirstt/workspace/workspace/projects/AL/lab11/lab-11-process/process/include/boost -I/home/luciferthefirstt/LuciferTheFirstt/workspace/workspace/projects/AL/lab11/lab-11-process/process/include -isystem /home/luciferthefirstt/.hunter/_Base/9a3594a/511a137/48401e9/Install/include -I/home/luciferthefirstt/LuciferTheFirstt/workspace/workspace/projects/AL/lab11/lab-11-process/include 
+CXX_INCLUDES = -I/home/luciferthefirstt/LuciferTheFirstt/workspace/workspace/projects/AL/lab11/lab11/process/include/boost -I/home/luciferthefirstt/LuciferTheFirstt/workspace/workspace/projects/AL/lab11/lab11/process/include -isystem /home/luciferthefirstt/.hunter/_Base/9a3594a/511a137/48401e9/Install/include -I/home/luciferthefirstt/LuciferTheFirstt/workspace/workspace/projects/AL/lab11/lab11/include 
 

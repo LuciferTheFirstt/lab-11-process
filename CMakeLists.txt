@@ -22,14 +22,13 @@ HunterGate(
 
 project(Process)
 
-#hunter_add_package(BoostProcess)
-#find_package(BoostProcess CONFIG REQUIRED)
+hunter_add_package(Boost COMPONENTS program_options filesystem system regex)
 hunter_add_package(Async++)
+#hunter_add_package(BoostProcess)
 find_package(Async++ CONFIG REQUIRED)
-hunter_add_package(Boost COMPONENTS program_options system)
-#find_package (Threads)
-#find_package (Boost COMPONENTS log_setup)
-find_package(Boost CONFIG REQUIRED program_options system)
+#find_package(BoostProcess CONFIG REQUIRED)
+find_package(Boost CONFIG REQUIRED program_options filesystem system regex)
+
 
 
 add_library(header INTERFACE)
