@@ -95,15 +95,17 @@ void build(int argc, char* argv[]) {
 
                     time_spent += end_3 - start_3;
                 });
-
+		std::cout<<"install"<<std::endl;
+ 	     }
                 if (vm.count("pack") && res_2 == 0) {
-                    auto t3 = t2.then([command_4, timeout, time_spent] () {
+                    auto t3 = async::spawn([command_4, timeout, time_spent] () {
                         time_t period_4 = timeout - time_spent;
-
+			
                         create_child(command_4, period_4);
                     });
+			std::cout<<"package"<<std::endl;
                 }
-            }
+	    
         }
         else {
             std::cerr << "config = " << config << " doesn't exist!\n";
