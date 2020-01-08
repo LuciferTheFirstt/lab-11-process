@@ -1,0 +1,113 @@
+﻿  Building Custom Rule C:/Users/Lucifer/Source/Repos/lab11/lab-11-process/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/Lucifer/Source/Repos/lab11/lab-11-process/_builds/CMakeFiles/generate.stamp is up-to-date.
+  main.cpp
+  Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
+  - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
+  - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
+  Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
+C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/associated_allocator.hpp(103): warning C4996: 'std::allocator<void>': warning STL4009: std::allocator<void> is deprecated in C++17. You can define _SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
+  D:\VisualStudio\VC\Tools\MSVC\14.16.27023\include\xmemory0(1029): note:  см. объявление "std::allocator<void>"
+C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/impl/executor.hpp(333): warning C4996: 'std::allocator<void>': warning STL4009: std::allocator<void> is deprecated in C++17. You can define _SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
+  D:\VisualStudio\VC\Tools\MSVC\14.16.27023\include\xmemory0(1029): note:  см. объявление "std::allocator<void>"
+  C:\Users\Lucifer\Source\Repos\lab11\lab-11-process\process\include\boost/process/detail/windows/io_context_ref.hpp(133): note: выполняется компиляция ссылки на экземпляр шаблон функции "boost::asio::executor::executor<boost::asio::io_context::executor_type>(Executor)"
+          with
+          [
+              Executor=boost::asio::io_context::executor_type
+          ]
+C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/detail/recycling_allocator.hpp(99): warning C4996: 'std::allocator<void>': warning STL4009: std::allocator<void> is deprecated in C++17. You can define _SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
+  D:\VisualStudio\VC\Tools\MSVC\14.16.27023\include\xmemory0(1029): note:  см. объявление "std::allocator<void>"
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/detail/executor_op.hpp(35): note: выполняется компиляция ссылки на экземпляр шаблон класс "boost::asio::detail::get_recycling_allocator<Alloc,boost::asio::detail::thread_info_base::default_tag>"
+          with
+          [
+              Alloc=std::allocator<void>
+          ]
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/detail/executor_op.hpp(35): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/impl/io_context.hpp(307): note: выполняется компиляция ссылки на экземпляр шаблон функции "boost::asio::detail::executor_op<function_type,Allocator,boost::asio::detail::operation> *boost::asio::detail::executor_op<function_type,Allocator,boost::asio::detail::operation>::ptr::allocate(const Alloc &)"
+          with
+          [
+              Allocator=std::allocator<void>,
+              Alloc=std::allocator<void>
+          ]
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/impl/io_context.hpp(307): note: выполняется компиляция ссылки на экземпляр шаблон класс "boost::asio::detail::executor_op<function_type,Allocator,boost::asio::detail::operation>::ptr"
+          with
+          [
+              Allocator=std::allocator<void>
+          ]
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/impl/executor.hpp(194): note: выполняется компиляция ссылки на экземпляр шаблон функции "void boost::asio::io_context::executor_type::defer<boost::asio::executor::function,Allocator>(Function &&,const Allocator &) const"
+          with
+          [
+              Allocator=std::allocator<void>,
+              Function=boost::asio::executor::function
+          ]
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/impl/executor.hpp(193): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/impl/executor.hpp(333): note: выполняется компиляция ссылки на экземпляр шаблон класс "boost::asio::executor::impl<Executor,std::allocator<void>>"
+          with
+          [
+              Executor=boost::asio::io_context::executor_type
+          ]
+  C:\Users\Lucifer\Source\Repos\lab11\lab-11-process\process\include\boost/process/detail/windows/io_context_ref.hpp(133): note: выполняется компиляция ссылки на экземпляр шаблон функции "boost::asio::executor::executor<boost::asio::io_context::executor_type>(Executor)"
+          with
+          [
+              Executor=boost::asio::io_context::executor_type
+          ]
+C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/impl/post.hpp(51): warning C4996: 'std::allocator<void>': warning STL4009: std::allocator<void> is deprecated in C++17. You can define _SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
+  D:\VisualStudio\VC\Tools\MSVC\14.16.27023\include\xmemory0(1029): note:  см. объявление "std::allocator<void>"
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/async_result.hpp(81): note: выполняется компиляция ссылки на экземпляр шаблон функции "void boost::asio::detail::initiate_post::operator ()<RawCompletionToken,const Executor&>(CompletionHandler &&,const boost::asio::executor&) const"
+          with
+          [
+              RawCompletionToken=boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>,
+              Executor=boost::asio::executor,
+              CompletionHandler=boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>
+          ]
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/async_result.hpp(255): note: выполняется компиляция ссылки на экземпляр шаблон функции "boost::asio::async_result<boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>,void (void)>::return_type boost::asio::async_result<boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>,void (void)>::initiate<Initiation,CompletionToken,const Executor&>(Initiation &&,RawCompletionToken &&,const Executor &)"
+          with
+          [
+              Initiation=boost::asio::detail::initiate_post,
+              CompletionToken=boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>,
+              Executor=boost::asio::executor,
+              RawCompletionToken=boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>
+          ]
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/async_result.hpp(256): note: выполняется компиляция ссылки на экземпляр шаблон функции "boost::asio::async_result<boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>,void (void)>::return_type boost::asio::async_result<boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>,void (void)>::initiate<Initiation,CompletionToken,const Executor&>(Initiation &&,RawCompletionToken &&,const Executor &)"
+          with
+          [
+              Initiation=boost::asio::detail::initiate_post,
+              CompletionToken=boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>,
+              Executor=boost::asio::executor,
+              RawCompletionToken=boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>
+          ]
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/impl/post.hpp(75): note: выполняется компиляция ссылки на экземпляр шаблон функции "void boost::asio::async_initiate<CompletionToken,void(void),boost::asio::detail::initiate_post,const Executor&>(Initiation &&,CompletionToken &,const Executor &)"
+          with
+          [
+              CompletionToken=boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>,
+              Executor=boost::asio::executor,
+              Initiation=boost::asio::detail::initiate_post
+          ]
+  C:\Users\Lucifer\Source\Repos\lab11\lab-11-process\process\include\boost/process/detail/windows/async_pipe.hpp(140): note: выполняется компиляция ссылки на экземпляр шаблон функции "boost::asio::async_result<boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>,void (void)>::return_type boost::asio::post<boost::asio::executor,boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>>(const Executor &,CompletionToken &&,void *)"
+          with
+          [
+              Executor=boost::asio::executor,
+              CompletionToken=boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>
+          ]
+C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/associated_allocator.hpp(106): warning C4996: 'std::allocator<void>': warning STL4009: std::allocator<void> is deprecated in C++17. You can define _SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
+  D:\VisualStudio\VC\Tools\MSVC\14.16.27023\include\xmemory0(1029): note:  см. объявление "std::allocator<void>"
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/impl/post.hpp(52): note: выполняется компиляция ссылки на экземпляр шаблон функции "std::allocator<void> boost::asio::get_associated_allocator<CompletionHandler>(const T &) noexcept"
+          with
+          [
+              CompletionHandler=boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>,
+              T=boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>
+          ]
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/async_result.hpp(81): note: выполняется компиляция ссылки на экземпляр шаблон функции "void boost::asio::detail::initiate_post::operator ()<RawCompletionToken,const Executor&>(CompletionHandler &&,const boost::asio::executor&) const"
+          with
+          [
+              RawCompletionToken=boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>,
+              Executor=boost::asio::executor,
+              CompletionHandler=boost::process::detail::windows::async_pipe::async_close::<lambda_657a53aeca7511a59288514b2d3f3ae8>
+          ]
+C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/detail/work_dispatcher.hpp(57): warning C4996: 'std::allocator<void>': warning STL4009: std::allocator<void> is deprecated in C++17. You can define _SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
+  D:\VisualStudio\VC\Tools\MSVC\14.16.27023\include\xmemory0(1029): note:  см. объявление "std::allocator<void>"
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/detail/work_dispatcher.hpp(56): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/detail/executor_function.hpp(91): note: выполняется компиляция ссылки на экземпляр шаблон функции "void boost::asio::detail::work_dispatcher<DecayedHandler>::operator ()(void)"
+  C:\.hunter\_Base\9a3594a\ab98bf0\c351cc1\Install\include\boost/asio/impl/post.hpp(55): note: выполняется компиляция ссылки на экземпляр шаблон класс "boost::asio::detail::work_dispatcher<DecayedHandler>"
+async++d.lib(scheduler.obj) : warning LNK4099: "Async++.pdb" PDB не найден с "async++d.lib(scheduler.obj)" или на "C:\Users\Lucifer\Source\Repos\lab11\lab-11-process\_builds\Debug\Async++.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+async++d.lib(threadpool_scheduler.obj) : warning LNK4099: "Async++.pdb" PDB не найден с "async++d.lib(threadpool_scheduler.obj)" или на "C:\Users\Lucifer\Source\Repos\lab11\lab-11-process\_builds\Debug\Async++.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+  builder.vcxproj -> C:\Users\Lucifer\Source\Repos\lab11\lab-11-process\_builds\Debug\builder.exe
