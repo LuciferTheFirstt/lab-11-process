@@ -24,16 +24,11 @@ project(Process)
 
 hunter_add_package(Boost COMPONENTS program_options filesystem system regex)
 hunter_add_package(Async++)
-#hunter_add_package(BoostProcess)
 find_package(Async++ CONFIG REQUIRED)
-#find_package(BoostProcess CONFIG REQUIRED)
 find_package(Boost CONFIG REQUIRED program_options filesystem system regex)
-
-
 
 add_library(header INTERFACE)
 add_library(Log INTERFACE)
-
 
 add_executable(builder
   ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
@@ -46,13 +41,6 @@ target_include_directories(Log
   INTERFACE $<BUILD_INTERFACE:${${PROJECT_NAME}_SOURCE_DIR}/include>
             $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
-
-#target_include_directories(picosha2
- # INTERFACE $<BUILD_INTERFACE:${${PROJECT_NAME}_SOURCE_DIR}/include>
-  #          $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-
-#target_link_libraries(main PUBLIC BoostProcess::boost_process)
 target_link_libraries(builder Boost::program_options Async++::Async++ Boost::system Boost::filesystem Boost::regex)
-#target_link_libraries(header INTERFACE picosha2 Log ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(builder header)
 
