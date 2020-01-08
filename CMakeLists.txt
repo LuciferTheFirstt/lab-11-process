@@ -52,7 +52,7 @@ target_include_directories(Log
   #          $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 #target_link_libraries(main PUBLIC BoostProcess::boost_process)
-target_link_libraries(builder Boost::program_options Async++::Async++ Boost::system)
+target_link_libraries(builder Boost::program_options Async++::Async++ Boost::system Boost::filesystem Boost::regex)
 #target_link_libraries(header INTERFACE picosha2 Log ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(builder header)
 

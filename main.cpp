@@ -16,9 +16,9 @@ using namespace boost::program_options;
 
 namespace
 {
-	const size_t ERROR_IN_COMMAND_LINE = 1;
-	const size_t SUCCESS = 0;
-	const size_t ERROR_UNHANDLED_EXCEPTION = 2;
+	const size_t error_in_command_line = 1;
+	const size_t success = 0;
+	const size_t error_unhandled_exeption = 2;
 }
 
 //void build(int argc, char* argv[]);
@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
 			if (vm.count("help") && !vm.count("config") && !vm.count("pack")
 				&& !vm.count("timeout") && !vm.count("install")) {
 				std::cout << desc << "\n";
-				return SUCCESS;
+				return success;
 			}
 			else {
 				std::string config = "Debug";
@@ -112,15 +112,14 @@ int main(int argc, char* argv[]) {
 		}
 	
 	catch (boost::program_options::error & e) {
-			std::cerr << "ERROR: " << std::endl << std::endl;
+                  std::cerr << "ERROR: " << e.what() << std::endl << std::endl;
 			std::cerr << desc << std::endl;
-			return ERROR_IN_COMMAND_LINE;
+			return error_in_command_line;
 	}
-		catch (std::exception & e)
-		{
-			std::cerr << "Unhandled Exception reached the top of main: "<< ", application will now exit" << std::endl;
-			return ERROR_UNHANDLED_EXCEPTION;
-		}
+	catch (std::exception & e) {
+			std::cerr << "Unhandled Exception reached the top of main: "<<e.what()<<", application will now exit" << std::endl;
+			return error_unhandled_exeption;
+	}
 	
 }
 

@@ -1,3 +1,3 @@
-/home/luciferthefirstt/LuciferTheFirstt/workspace/workspace/projects/AL/lab11/lab11/CMakeFiles/rebuild_cache.dir
-/home/luciferthefirstt/LuciferTheFirstt/workspace/workspace/projects/AL/lab11/lab11/CMakeFiles/builder.dir
-/home/luciferthefirstt/LuciferTheFirstt/workspace/workspace/projects/AL/lab11/lab11/CMakeFiles/edit_cache.dir
+C:/Users/Lucifer/Source/Repos/lab11/lab-11-process/CMakeFiles/builder.dir
+C:/Users/Lucifer/Source/Repos/lab11/lab-11-process/CMakeFiles/ALL_BUILD.dir
+C:/Users/Lucifer/Source/Repos/lab11/lab-11-process/CMakeFiles/ZERO_CHECK.dir
