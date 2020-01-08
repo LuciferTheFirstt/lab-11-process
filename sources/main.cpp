@@ -21,8 +21,6 @@ namespace
 	const size_t error_unhandled_exeption = 2;
 }
 
-//void build(int argc, char* argv[]);
-
 void create_child(const std::string& command, const time_t& period);
 
 void create_child(const std::string& command, const time_t& period, int& res);
@@ -175,10 +173,6 @@ time_t time_now() {
 		std::chrono::system_clock::now()
 	);
 }
-
-//int main(int argc, char* argv[]) {
-//	build(argc, argv);
-//}
 
 int Prob(std::string command1, int& res, time_t& timeout, time_t& time_spent) {
 
