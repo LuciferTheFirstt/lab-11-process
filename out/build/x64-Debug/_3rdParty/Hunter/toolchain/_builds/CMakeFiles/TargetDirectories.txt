@@ -1,2 +1,0 @@
-C:/Users/Lucifer/Source/Repos/lab11/lab-11-process/out/build/x64-Debug/_3rdParty/Hunter/toolchain/_builds/CMakeFiles/edit_cache.dir
-C:/Users/Lucifer/Source/Repos/lab11/lab-11-process/out/build/x64-Debug/_3rdParty/Hunter/toolchain/_builds/CMakeFiles/rebuild_cache.dir
